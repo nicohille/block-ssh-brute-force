@@ -21,8 +21,9 @@ for a in UniqueIps:
     counter=0
     for b in ipaddresses:
         if a==b:
-            counter+=0
+            counter+=1
 
     if counter>=3:
-        fwblock.block.ip(a)
-        print("Het ip address" + a + "kwam" + counter + "keer voor en wordt geblokeerd")
+        print("Het Ip addres", a ,"komt", counter ,"keer voor, het wordt nu geblokkeerd")
+        fwblock.block_ip(a)       
+        
