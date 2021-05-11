@@ -2,12 +2,13 @@
 
 import fwblock
 
-logfile=open("sshdlog","r")
 
 outputUsers = []
 ipaddresses = []
 
-for line in logfile.readlines():
+with open("sshdlog","r") as lf:
+    logfile=lf.readlines()
+for line in logfile:
     if "invalid user" in line: outputUsers.append(line)
 
 for line in outputUsers:
@@ -15,6 +16,7 @@ for line in outputUsers:
     ip=listLines[-4]
     ipaddresses.append(ip)
 
+lf.close()
 UniqueIps=set(ipaddresses)
 
 for a in UniqueIps:
@@ -27,3 +29,4 @@ for a in UniqueIps:
         print("Het Ip addres", a ,"komt", counter ,"keer voor, het wordt nu geblokkeerd")
         fwblock.block_ip(a)       
         
+
